@@ -1,0 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_null.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oborysen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/26 22:07:04 by oborysen          #+#    #+#             */
+/*   Updated: 2017/02/26 23:24:57 by oborysen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+void	nul_x(char *str, t_list *lst)
+{
+	int	n;
+
+	n = 0;
+//	write(1, "*", 1);
+//	printf("s %s", str);
+//	if (!lst)
+//		return ;
+	while (str[n])
+        n++;
+//	printf("n %d", n);
+	if (str[n - 1] == '0' && str[n] == '\0' && n <= 3 && (lst->p_n != -1 || lst->hash == 1))
+	{
+		if (lst->p_n != -1 && lst->hash == 0)
+			str[0] = ' ';
+//		ft_putstr(str);
+	}
+	else
+	{
+		if (lst->p_n >= 0)
+			lst->nul = 0;
+		print_xstr(str, lst);
+	}
+}

@@ -1,0 +1,61 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   conv_sm.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oborysen <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/21 19:04:59 by oborysen          #+#    #+#             */
+/*   Updated: 2017/02/25 17:22:23 by oborysen         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "ft_printf.h"
+
+void	conv_sm(t_list *lst, long *i, void *nt)
+{
+//	if (lst->smodif == 3 && lst->conv == 6)
+//		lst->conv = 7;
+	if (lst->smodif == 0 && (lst->conv == 6 || lst->conv == 5))
+		*i = (int)nt;
+	if (lst->smodif == 1 && (lst->conv == 6 || lst->conv == 4))
+		*i = (short)nt;
+	if (lst->smodif == 2 && (lst->conv == 6 || lst->conv == 4))
+		*i = (char)nt;
+	if (lst->conv == 5)
+		*i = (long)nt;
+	if (lst->smodif > 2 && (lst->conv == 6 || lst->conv == 4))
+		*i = (long)nt;
+	if (lst->smodif == 2 && lst->conv == 9))
+		*i = (unsigned long)nt;
+	if (lst->smodif > 2 && lst->conv == 9))
+		*i = (unsigned long)nt;
+    if (*i < 0)
+    {
+        lst->minus++;
+        lst->nsymb++;
+    }
+//	printf("P4 %ld\n", *i);
+	(lst->minus == 1) ? (*i = *i * -1) : (*i = *i + 0);
+}
+
+void	print_vids(t_list *lst)
+{
+	lst->nsymb = 1;
+	while (lst->width > lst->nsymb && lst->nul == 0 && lst->min != 1)
+	{
+		ft_putchar(' ');
+		lst->width--;
+	}
+	while ((lst->width > lst->nsymb) && lst->nul == 1 && lst->min != 1)
+	{
+		ft_putchar('0');
+		lst->width--;
+	}
+	ft_putchar('%');
+	while (lst->width > lst->nsymb && lst->min == 1)
+	{
+		ft_putchar(' ');
+		lst->width--;
+	}
+}
