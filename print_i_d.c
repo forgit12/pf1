@@ -6,7 +6,7 @@
 /*   By: oborysen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/20 23:02:47 by oborysen          #+#    #+#             */
-/*   Updated: 2017/02/27 22:08:35 by oborysen         ###   ########.fr       */
+/*   Updated: 2017/02/27 23:28:43 by oborysen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ void	printi(t_list *lst, void *nt)
 		ft_putchar(' ');
 		lst->width--;
 	}
-//	write(1, "t", 1);
-	while ((lst->width - lst->plus > lst->nsymb) && lst->nul == 0 && lst->min != 1)
+
+	while ((lst->width - lst->plus > lst->nsymb) && (lst->nul == 0 || (lst->p_n <= lst->nsymb)) && lst->min != 1)
 	{
 		ft_putchar(' ');
 		lst->width--;
