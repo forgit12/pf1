@@ -27,7 +27,8 @@ SRC =	ft_printf.c\
 		print_c.c\
 		conv_sm.c\
 		ft_null.c\
-		print_ch.c
+		print_ch.c\
+		add.c
 
 OBJ = $(SRC:.c=.o)
 
