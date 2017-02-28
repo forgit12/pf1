@@ -62,6 +62,7 @@ void	printi(t_list *lst, void *nt)
 		lst->nsymb++;
 	}
 */
+//	printf("LM %d\n", lst->minus);
 	conv_sm(lst, &i, nt);
 //	(lst->minus == 1) ?	(i = i * -1) : (i = i + 0);
 //	printf("P2 %ld\n", i);
@@ -80,6 +81,7 @@ void	printi(t_list *lst, void *nt)
 //	printf("lst->nul %d\n", lst->nul);
 	if (lst->p_n && (lst->p_n - lst->nsymb > 0))
 	{
+//		write(1, "*", 1);
 		printprecision(lst, i);
 		return ;
 	}
@@ -88,19 +90,31 @@ void	printi(t_list *lst, void *nt)
 		print_p_m_symb(lst, i);
 		return ;
 	}
+	if (lst->minus == 1 && lst->width >= lst->nsymb && lst->min != 1)
+	{
+		print_fix_minus_d(lst, i);
+		return ;
+	}
 	if (lst->conv != 9 && lst->conv != 10 && lst->minus != 1 && lst->plus != 1 && lst->space == 1 && (lst->width == 0 || (lst->width > 0 && lst->min == 1)))
 	{
 		ft_putchar(' ');
 		lst->width--;
 	}
-
-	while ((lst->width - lst->plus > lst->nsymb) && (lst->nul == 0 || (lst->p_n <= lst->nsymb)) && lst->min != 1)
+//	printf("lm %d", lst->minus);
+//	printf("lp %d", lst->p_n);
+//	printf("ln %d", lst->nsymb);
+	(lst->plus == 1 && lst->minus == 0 && (lst->nsymb - 1 > lst->p_n)) ? (lst->nsymb--) : 0;
+//	printf("lw %d", lst->width);
+//	printf("LP %d", lst->plus);
+	while ((lst->width - lst->plus - lst->minus > lst->nsymb) && (lst->nul == 0 || (lst->p_n <= lst->nsymb && lst->p_n != -1)) && lst->min != 1)
 	{
 		ft_putchar(' ');
 		lst->width--;
 	}
+//	printf("LW %d", lst->width);
 	if (lst->minus == 1 && ((lst->width > lst->nsymb) || lst->width == 0))
 	{
+//		write(1, "*", 1);
 		ft_putchar('-');
 		lst->minus = 0;
 		lst->plus = 0;
@@ -111,6 +125,9 @@ void	printi(t_list *lst, void *nt)
 //	printf("ln %d\n", lst->nsymb);
 	if (lst->plus == 1 && lst->nul != 1 && lst->minus != 1)
 		ft_putchar('+');
+//	printf("lw %d\n", lst->width);
+//	printf("ln %d\n", lst->nsymb);
+	(lst->plus == 1 && lst->minus == 0 && (lst->nsymb - 1 > lst->p_n)) ? (lst->nsymb++) : 0;
 	while ((lst->width > lst->nsymb) && (lst->nul == 1 || lst->plus == 1) && lst->min != 1)
 	{
 		ft_putchar('0');
