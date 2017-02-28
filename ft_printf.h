@@ -91,5 +91,6 @@ void				print_ch(t_list *lst);
 void				print_p_m_symb(t_list *lst, uintmax_t i);
 void				print_d_i_null_p_n(t_list *lst);
 char				*s_null();
+void				print_fix_minus_d(t_list *lst, uintmax_t i);
 
 #endif
