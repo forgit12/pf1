@@ -34,7 +34,7 @@ void	conv_sm(t_list *lst, long *i, void *nt)
 		*i = (unsigned long)nt;
 	if (lst->conv == 10)
 		*i = (unsigned long)nt;
-    if (*i < 0)
+    if (*i < 0 && lst->conv != 9 && lst->conv != 10)
     {
         lst->minus++;
         lst->nsymb++;
